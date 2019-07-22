@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!--    <class name="com.crm.bean.Contact" table="t_contact">
+        <id column="i_contactid" name="contactId" type="integer"> 
+            <generator class="increment"/>        
+        </id>  
+    </class>
+-->    <class name="com.crm.bean.Country" table="t_country">
+        <id column="i_countryid" name="countryId" type="integer"> 
+            <generator class="increment"/>        
+        </id>  
+        <property column="s_name" name="countryName" type="string"/>
+        <property column="i_status" name="status" type="integer"/>
+        <property column="i_userid" name="userId" type="integer"/>
+        <property column="ts_moddate" name="modDate"/>
+        <property column="ts_regdate" name="regDate"/>
+    </class><!--
+    <class name="com.crm.bean.State" table="t_state">
+        <id column="i_stateid" name="stateId" type="integer"> 
+            <generator class="increment"/>        
+        </id>  
+        <property column="i_countryid" name="countryId" type="integer"/>
+        <property column="s_name" name="stateName" type="string"/>
+    </class>
+-->    
+    <class name="com.crm.bean.City" table="t_city">
+        <id column="i_cityid" name="cityId" type="integer"> 
+            <generator class="increment"/>        
+        </id>       
+        <property column="i_countryid" name="countryId" type="integer"/>
+        <property column="s_name" name="cityName" type="string"/>
+        <property column="i_status" name="status" type="integer"/>
+        <property column="ts_regdate" name="regData" type="string"/>
+        <property column="i_userid" name="userId" type="integer"/>
+    </class>
+    <class name="com.crm.bean.Education" table="t_education">
+        <id column="i_educationid" name="educationId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_name" name="educationName" type="string"/>
+    </class>
+    <class name="com.crm.bean.Occupation" table="t_occupation">
+        <id column="i_occupationid" name="occupationId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_occupation" name="occupationName" type="string"/>
+        <!--<property column="i_sequence" name="sequence" type="integer"/>-->
+        <property column="ts_moddate" name="modDate"/>
+        <property column="ts_regdate" name="regDate"/>
+        <property column="i_status" name="status"/>
+        <property column="i_userid" name="userId"/>
+    </class>
+  <class name="com.crm.bean.Gotra" table="t_gotra">
+        <id column="i_gotraid" name="gotraId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_name" name="gotraName" type="string"/>
+        <property column="ts_moddate" name="modDate"/>
+        <property column="ts_regdate" name="regDate"/>
+        <property column="i_status" name="status"/>
+        <property column="i_userid" name="userId"/>
+        <property column="i_communityid" name="communityId"/>
+    </class>
+    <class name="com.crm.bean.Community" table="t_community">
+        <id column="i_communityid" name="communityId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_name" name="communityName" type="string"/>
+        <property column="i_status" name="status" type="integer"/>
+        <property column="i_userid" name="userId" type="integer"/>
+         <property column="ts_moddate" name="modDate" type="string"/>
+        <property column="ts_regdate" name="regDate" type="string"/>
+    </class>
+    <class name="com.crm.bean.MotherTongue" table="t_mothertongue">
+        <id column="i_mothertongueid" name="motherTongueId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_mothertongue" name="motherTongue" type="string"/>      
+    </class>
+    <class name="com.crm.bean.Complexion" table="t_complexion">
+        <id column="i_complexionid" name="complexionId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_complexiontype" name="complexionType" type="string"/>
+    </class>
+    <class name="com.crm.bean.Diet" table="t_diet">
+        <id column="i_dietid" name="dietId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_diettype" name="dietType" type="string"/>
+    </class><!--
+    <class name="com.crm.bean.Smoke" table="t_smoke">
+        <id column="i_smokeid" name="smokeId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_type" name="smokeType" type="string"/>
+    </class>
+    <class name="com.crm.bean.Drink" table="t_drink">
+        <id column="i_drinkid" name="drinkId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_type" name="drinkType" type="string"/>
+    </class>
+-->   
+    <class name="com.crm.bean.BodyType" table="t_bodyt">
+        <id column="i_bodytid" name="bodyTypeId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_bodytype" name="bodyType" type="string"/>
+    </class>
+    <class name="com.crm.bean.ContactDetail1" table="t_contactdetail1">
+        <id column="i_contactdetailid1" name="contactdetail1Id" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="i_contactid" name="contactId" type="integer"/>
+        <property column="i_relation" name="relationId" type="integer"/>
+        <property column="s_name" name="siblingName" type="string"/>
+        <property column="s_elder" name="elder" type="string"/>
+        <property column="s_married" name="married" type="string"/>
+        <property column="s_towhom" name="toWhom" type="string"/>
+        <property column="s_work" name="work" type="string"/>
+        <property column="s_bname" name="businessDescription" type="string"/>
+        <property column="d_income" name="income" type="double"/>
+        <property column="s_place" name="siblingPlace" type="string"/>
+        <property column="s_dsof" name="siblingDob" type="string"/>
+        <property column="s_education" name="siblingEducation" type="string"/>
+        <property column="s_location" name="location" type="string"/>
+        <property column="ts_moddate" name="modDate" type="string"/>
+        <property column="ts_regdate" name="regDate" type="string"/>
+
+        
+    </class>
+    <class name="com.crm.bean.Hobbies" table="t_hobbies">
+        <id column="i_hobbiesid" name="hobbiesid" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_hobbies" name="hobbies" type="string"/>
+        <property column="i_sequence" name="sequence" type="integer"/>
+        <property column="i_status" name="status" type="integer"/>
+        <property column="i_userid" name="userId" type="integer"/>
+        <property column="ts_moddate" name="modDate" type="string"/>
+        <property column="ts_regdate" name="regDate" type="string"/>
+    </class>
+    <!--
+    <class name="com.crm.bean.Music" table="t_music">
+        <id column="i_musicid" name="musicId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_music" name="musicName" type="string"/>
+    </class>
+    <class name="com.crm.bean.Interests" table="t_interests">
+        <id column="i_interestsid" name="interestId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_interests" name="interestName" type="string"/>
+    </class>
+    <class name="com.crm.bean.Read" table="t_fread">
+        <id column="i_freadid" name="readId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_name" name="readName" type="string"/>
+    </class>
+    <class name="com.crm.bean.Movies" table="t_fmovies">
+        <id column="i_fmoviesid" name="moviesId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_name" name="moviesName" type="string"/>
+    </class>
+    <class name="com.crm.bean.Cuisine" table="t_fcuisines">
+        <id column="i_fcuisinesid" name="cusineId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_name" name="cusineName" type="string"/>
+    </class>
+    <class name="com.crm.bean.Languages" table="t_languages">
+        <id column="i_languagesid" name="languagesId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_languages" name="languageName" type="string"/>
+    </class>
+    <class name="com.crm.bean.DressStyle" table="t_dressstyles">
+        <id column="i_dressstylesid" name="dressStyleId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_dressstyles" name="dressStyleName" type="string"/>
+    </class>
+    <class name="com.crm.bean.Sports" table="t_sport">
+        <id column="i_sportid" name="sportsId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_type" name="sportsName" type="string"/>
+    </class>
+ 
+-->   <class name="com.crm.bean.AuditTrailBean" table="audittrail">
+        <id column="audittrailid" name="auditTrailId" type="integer">
+            <generator class="increment"></generator>
+        </id>
+        <property column="modulename" name="moduleName" type="string"></property>
+        <property column="contactid" name="contactId" type="integer"></property>
+        <property column="action" name="action" type="string" ></property>
+        <property column="remark" name="remark" type="string" ></property>
+        <property column="insertedby" name="insertedBy" type="integer"></property>
+        <property column="updatedby" name="updatedBy" type="integer"></property>
+         <property column="type" name="type" type="integer"></property>
+    </class>
+    
+    <class name="com.crm.bean.Followup" table="t_followup">
+        <id column="i_followupid" name="followupId" type="integer"> 
+            <generator class="increment"/>        
+        </id>           
+        <property column="s_content" name="content" type="string"/>
+        <property column="i_flag" name="flag" type="integer"/>
+        <property column="i_seen" name="seen" type="integer"/>
+        <property column="i_status" name="status" type="integer"/>
+        <property column="s_startend" name="startend" type="string"/>
+        <property column="i_contactid" name="contactId" type="integer"/>
+        <property column="i_projectid" name="projectId" type="integer"/>
+        <property column="d_nextdate" name="nextDate" type="string"/>
+        <property column="ts_regdate" name="regDate" type="string"/>
+        <property column="ts_moddate" name="modDate" type="string"/>
+        <property column="i_userid" name="userId" type="integer"/>
+    </class>
+    <!--
+   
+    -->    
+    <class name="com.crm.bean.FeedBack" table="t_feedback">
+        <id column="i_feedbackid" name="feedbackId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="i_contactid" name="contactId" type="integer"/>
+        <property column="i_userid" name="userId" type="integer"/>
+        <property column="s_subject" name="subject" type="string"/>
+        <property column="s_content" name="content" type="string"/>
+        <property column="i_flag" name="flag" type="integer"/>
+        <property column="i_status" name="status" type="integer"/>
+        <property column="ts_regdate" name="regDate" type="string"/>
+        <property column="ts_moddate" name="modDate" type="string"/>
+    </class><!--
+-->    
+    <!--    <class name="com.crm.bean.UserLogin" table="t_userlogin">
+            <id column="i_userid" name="userId" type="integer"> 
+                <generator class="increment"/>        
+            </id>        
+            <property column="s_name" name="userName" type="string"/>   
+            <property column="i_officeId" name="officeId" type="integer"/>
+            <property column="ts_usercreatedby" name="userCreatedBy" type="string"/>  
+            <property column="i_deptid" name="deptId" type="integer"/>     
+        </class>
+    -->    
+    <class name="com.crm.bean.Category" table="t_category">
+        <id column="i_catid" name="categoryId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="s_name" name="categoryName" type="string"/> 
+        <property column="s_gender" name="gender" type="string"/>     
+        <property column="i_status" name="status" type="integer"/>  
+        <property column="d_successfees" name="successFee"/>
+        <property column="d_tokenfees" name="tokenFee"/>
+        <property column="ts_moddate" name="modDate"/>
+        <property column="ts_regdate" name="regDate"/>
+        <property column="s_description" name="description" type="string"/>
+        <property column="i_userid" name="userId" type="integer"/>
+        <property column="i_sequence" name="sequence" type="integer"/>   
+    </class><!--
+-->    
+    <class name="com.crm.bean.Work" table="t_work">
+        <id column="i_workid" name="workId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="s_name" name="workName" type="string"/>    
+         <property column="ts_moddate" name="modDate"/>
+        <property column="ts_regdate" name="regDate"/>
+        <property column="i_status" name="status"/>
+        <property column="i_userid" name="userId"/> 
+    </class>
+    <class name="com.crm.bean.Zodiac" table="t_zodiacsigns">
+        <id column="i_zodiacid" name="zodiacId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="s_zodiacname" name="zodiacName" type="string"/>     
+    </class>
+    <class name="com.crm.bean.Office" table="t_office">
+        <id column="i_officeid" name="officeId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="s_name" name="officeName" type="string"/>   
+        <property column="i_cityid" name="cityId" type="integer"/>
+        <property column="i_countryid" name="countryId" type="integer"/>
+        <property column="i_stateid" name="stateId" type="integer"/>
+        <property column="s_address1" name="address1" type="string"/>
+        <property column="s_address2" name="address2" type="string"/>
+        <property column="s_contactperson" name="contactPerson" type="string"/>
+        <property column="s_email" name="email" type="string"/>
+        <property column="s_mobile" name="mobile" type="string"/>
+        <property column="s_telephone" name="telephone" type="string"/>
+        <property column="ts_regdate" name="regDate"/>  
+        <property column="s_pincode" name="pincode" type="string"/>
+        <property column="i_userid" name="userId" type="integer"/>
+        <property column="i_status" name="status" type="integer"/>
+    </class>
+    
+    <class name="com.crm.bean.Meeting" table="t_meeting">
+        <id column="i_mid" name="meetingId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="s_venue" name="venue" type="string"/>   
+        <property column="ts_date" name="date" type="string"/>  
+        <property column="s_groomside" name="fromGroomSide" type="string"/>  
+        <property column="s_brideside" name="fromBrideSide" type="string"/>  
+        <property column="s_description" name="description" type="string"/>  
+        <property column="i_userid" name="userId" type="integer"/>  
+        <property column="i_mtpflag" name="meetingType" type="string"/>
+        <property column="i_stid" name="statusId" type="integer"/>  
+        <property column="ts_regdate" name="regDate" type="string"/>
+        <property column="ts_moddate" name="modDate" type="string"/>
+        <property column="i_mailflag" name="sendMail" type="integer"/>  
+        <property column="i_status" name="status" type="integer"/>  
+        <property column="s_remark" name="remarks" type="string"/>  
+        
+    </class>
+    <class name="com.crm.bean.LockProfileTrail" table="t_lockprofiletrail">
+        <id column="i_lockprofiletrailid" name="lockProfileTrailId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="d_fromdate" name="fromDate" type="date"/>   
+        <property column="d_todate" name="toDate" type="date"/>  
+        <property column="s_remark" name="remark" type="string"/>  
+        <property column="i_active" name="active" type="integer"/>  
+        <property column="i_insertedby" name="insertedBy" type="integer"/>  
+        <property column="ts_insertedon" name="insertedOn" type="date"/>  
+        <property column="i_updatedby" name="updatedBy" type="integer"/>
+        <property column="ts_updatedon" name="updatedOn" type="date"/> 
+        <property column="i_contactid" name="contactId" type="integer"/> 
+        <property column="s_type" name="type" type="string"/>  
+    </class>
+    <class name="com.crm.bean.Batch" table="t_batch">
+        <id column="i_batchid" name="batchId" type="integer"> 
+            <generator class="increment"/>        
+        </id>            
+        <property column="i_emailtype" name="emailType" type="integer"/>  
+        <property column="i_userid" name="userId" type="integer"/>  
+        <property column="i_status" name="status" type="integer"/>     
+        <property column="ts_regdate" name="regDate" type="string"/>
+        <property column="ts_moddate" name="modDate" type="string"/>
+    </class>
+    <class name="com.crm.bean.Email" table="t_email">
+        <id column="i_emailid" name="emailId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="s_receipientids" name="recepientIds" type="string"/>
+        <property column="i_contactid" name="contactId" type="integer"/>
+        <property column="s_subject" name="subject" type="string"/>
+        <property column="s_content" name="content" type="string"/>
+        <property column="d_date" name="scheduledDate" type="date"/>
+        <property column="i_flag" name="flag" type="integer"/>
+        <property column="ts_regdate" name="regDate" type="string"/>
+        <property column="ts_moddate" name="modDate" type="string"/>
+        <property column="s_attachment" name="attachment" type="string"/>
+        <property column="i_batchid" name="batchId" type="integer"/>
+
+      
+    </class>
+    <class name="com.crm.bean.Location" table="t_location">
+        <id column="i_locationid" name="locationId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="s_locationname" name="locationName" type="string"/>     
+    </class>
+    <class name="com.crm.bean.ContactEducation" table="t_contacteducation">
+        <id column="i_contacteducationid" name="contactEducationId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="s_location" name="location" type="string"/>     
+        <property column="s_college" name="college" type="string"/>     
+        <property column="i_year" name="year" type="string"/>  
+        <property column="i_contactid" name="contactId" type="integer"/> 
+        <property column="t_updatedon" name="modDate" type="string"/> 
+        <property column="t_insertedon" name="regDate" type="string"/>
+        <!--<property column="i_graduationtype" name="graduationType" type="integer"/>-->  
+        <property column="s_graduationtype" name="graduationType" type="string"/>     
+    </class>
+    <class name="com.crm.bean.Children" table="t_children">
+        <id column="i_childrenid" name="childrenId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="s_name" name="childName" type="string"/>     
+        <property column="s_gender" name="gender" type="string"/>     
+        <property column="s_livingwith" name="livingWith" type="string"/>  
+        <property column="i_contactid" name="contactId" type="integer"/>  
+        <property column="i_age" name="age" type="integer"/>     
+    </class>
+    <class name="com.crm.bean.ContactAditionalMapping" table="t_contactdetailaditionalinformationmapping">
+        <id column="contactdetailaditionalinformationid" name="contactAditionalInformationId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="contactid" name="contactId" type="integer"/>     
+        <property column="remark" name="remark" type="string"/>     
+        <property column="active" name="active" type="integer"/>  
+        <property column="insertedby" name="insertedBy" type="integer"/>     
+    </class>
+    <class name="com.crm.bean.MainStatus" table="t_mainstatus">
+        <id column="i_mainstatusid" name="mainStatusId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="s_name" name="mainStatusName" type="string"/>  
+        <property column="i_active" name="active" type="integer"/>   
+    </class>
+    <class name="com.crm.bean.Reason" table="t_reason">
+        <id column="i_reasonid" name="reasonId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="i_mainstatusid" name="mainStatusId" type="integer"/>     
+        <property column="s_shortcode" name="shortCode" type="string"/>     
+        <property column="s_name" name="reason" type="string"/> 
+        <property column="s_yesorno" name="yesOrNo" type="string"/>    
+    </class>
+    <class name="com.crm.bean.BirthCountry" table="t_astrocountry">
+        <id column="id" name="birthCountryId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="name" name="birthCountryName" type="string"/>     
+    </class>
+    <class name="com.crm.bean.ProfileFollowup" table="t_profilefollowup">
+        <id column="i_profilefollowupid" type="integer" name="profileFollowupId">
+            <generator class="increment"/>        
+        </id>
+        <property name="reasonId" column="i_reason" type="integer"/>
+        <property name="active" column="i_active" type="integer"/>
+        <property name="followupDateString" column="d_followupdate" type="string"/>
+        <property name="mainStatusId" column="i_mainstatus" type="integer"/>
+        <property name="userId" column="i_userid" type="integer"/>
+        <property name="remark" column="s_remark" type="string"/>
+        <property name="contactId" column="i_contactId" type="integer"/>
+        <property name="matchId" column="i_matchId" type="integer"/>
+        <property name="dailyCallFlag" column="i_dailyflag" type="integer"/>
+        <property name="insertString" column="ts_insertedon" type="string"/> 
+        <property name="profilecontactNumber" column="s_contactnumber" type="string"/> 
+    </class>
+    <class name="com.crm.bean.Arm" table="t_arm">
+        <id column="i_armid" name="armId" type="integer"> 
+            <generator class="increment"/>        
+        </id>        
+        <property column="s_name" name="name" type="string"/>     
+        <property column="i_rmid" name="rmId" type="integer"/>  
+        <property column="i_userid" name="userId" type="integer"/>     
+    </class>
+    <class name="com.crm.bean.UserMasterBean" table="t_userlogin">
+        <id column="i_userid" name="userId" type="integer">
+            <generator class="increment"/>
+        </id>
+        <property column="s_name" name="name" type="string"/>
+        <property column="d_expirydate" name="expiryDateSql"/>
+        <property column="i_all" name="all" type="integer"/>
+        <property column="i_assigned" name="assigned" type="integer"/>
+        <property column="i_unassigned" name="unassigned" type="integer"/>
+        <property column="i_kundaliper" name="kundaliper" type="integer"/>
+        <property column="i_status" name="status" type="integer"/>
+        <property column="s_shortname" name="shortName" type="string"/>
+        <property column="s_mobile" name="mobile" type="string"/>
+        <property column="s_loginid" name="userName" type="string"/>
+        <property column="s_password" name="password" type="string"/>
+        <property column="s_serverpassword" name="serverPassword"/>
+        <property column="s_serverusername" name="serverUserName"/>
+        <property column="s_host" name="host"/>
+        <property column="s_port" name="port" type="string"/>
+        <property column="i_deptid" name="deptId" type="integer"/>
+        <property column="i_officeid" name="officeId" type="integer"/>
+        <property column="s_mpermission" name="moduleaccess" type="string"/>
+        <property column="ts_regdate" name="regDate"/>
+    </class>
+    
+    
+     <class name="com.crm.bean.UserLogin" table="t_userlogin">
+        <id column="i_userid" name="userId" type="integer">
+            <generator class="increment"/>
+        </id>
+        <property column="s_name" name="name" type="string"/>
+        <property column="d_expirydate" name="expiryDateSql"/>
+        <property column="i_all" name="all" type="integer"/>
+        <property column="i_assigned" name="assigned" type="integer"/>
+        <property column="i_unassigned" name="unassigned" type="integer"/>
+        <property column="i_kundaliper" name="kundaliper" type="integer"/>
+        <property column="i_status" name="status" type="integer"/>
+        <property column="s_shortname" name="shortName" type="string"/>
+        <property column="s_mobile" name="mobile" type="string"/>
+        <property column="s_loginid" name="userName" type="string"/>
+        <property column="s_password" name="password" type="string"/>
+        <property column="s_serverpassword" name="serverPassword"/>
+        <property column="s_serverusername" name="serverUserName"/>
+        <property column="s_host" name="host"/>
+        <property column="s_port" name="port" type="string"/>
+        <property column="i_deptid" name="deptId" type="integer"/>
+        <property column="i_officeid" name="officeId" type="integer"/>
+        <property column="i_active" name="activeFlag" type="integer"/>
+        <property column="s_mpermission" name="moduleaccess" type="string"/>
+        <property column="ts_regdate" name="regDate"/>
+    </class>
+    
+    <class name="com.crm.bean.ArmBean" table="t_arm">
+        <id column="i_armid" name="armId" type="integer">
+            <generator class="increment"/>
+        </id>
+        <property column="i_rmid" name="rmId" type="integer"/>
+        <property column="s_name" name="name" type="string"/>
+        <property column="i_userid" name="userId" type="integer"/>
+    </class>
+    
+    <class name="com.crm.bean.MasterBean" table="t_astrocity">
+        <id column="id" name="astroCityId" type="integer">
+            <generator class="increment"/>
+        </id>
+        <property column="name" name="astroCityName" type="string"/>
+        <property column="longitude" name="longitude" type="big_decimal"/>
+        <property column="latitude" name="latitude" type="big_decimal"/>
+        <property column="longDir" name="longiDirection" type="character"/>
+        <property column="latDir" name="latiDirection" type="character"/>
+        <property column="countryID" name="countryId" type="integer"/>
+        <property column="gmtdiff" name="gmtDiff" type="big_decimal"/>
+    </class>
+    
+    <class name="com.crm.bean.PackageBean" table="t_paymentpackage">
+        <id column="i_packageid" name="packageId" type="integer">
+            <generator class="increment"/>
+        </id>
+        <property column="s_packagename" name="packageName" type="string"/>
+        <property column="d_packageprice" name="packagePrice" type="float"/>
+        <property column="d_totalprice" name="totalPrice" type="float"/>
+        <property column="s_packagecode" name="packageCode" type="string"/>
+        <property column="i_insertedBy" name="insertedBy" type="integer"/>
+    </class>
+    
+    <class name="com.crm.bean.PackageContactBean" table="t_package_contact_map">
+        <id column="i_packagemapid" name="packageContactMapId" type="integer">
+            <generator class="increment"/>
+        </id>
+        <property column="i_packageid" name="packageId" type="integer"/>
+        <property column="i_contactid" name="contactId" type="integer"/>
+        <property column="d_packageprice" name="packagePrice" type="float"/>
+        <property column="ts_insertedon" name="insertedOn" type="string"/>
+        <property column="i_insertedBy" name="insertedBy" type="integer"/>
+    </class>
+    
+</hibernate-mapping>

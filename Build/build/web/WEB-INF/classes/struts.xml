@@ -1,0 +1,1350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+  "-//Apache Software Foundation//DTD Struts
+  Configuration 2.0//EN"
+  "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation"  value="false" />
+    <constant name="struts.multipart.maxSize" value="8097100" />
+ 
+    
+    <package name="com.crm.action" namespace="/" extends="struts-default">
+        
+        <action name="userLogin" class="com.crm.action.Login" method="userLogin">
+            <result name="success" type="redirect">rmdashboard</result>
+            <result name="success1" type="redirect">generateReportArm</result>
+            <result name="error">index.jsp</result>      
+        </action> 
+        <action name="logout" class="com.crm.action.Login" method="getLogout">
+            <result name="success">/index.jsp</result>       
+        </action>
+        <action name="profileList" class="com.crm.action.ProfileAction" method="profileList">
+            <result name="success">/Profile/profileList.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>   
+        </action> 
+        <action name="searchContact" class="com.crm.action.ProfileAction" method="profileList">
+            <result name="success">/Ajax/profileListDiv.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="reportList" class="com.crm.action.RmReportAction" method="fetchDataForList">
+            <result name="success">/RmReport/rmReport.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+       
+        <action name="feedbackListIndividual" class="com.crm.action.ProfileAction" method="feedbackListIndividual">
+            <result name="success">/Ajax/feedBack.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="feedbackListIndividualDup" class="com.crm.action.ProfileAction" method="feedbackListIndividual">
+            <result name="success">/Ajax/feedback/feedbackListHorizontal.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="feedbackListIndividual1" class="com.crm.action.ProfileAction" method="feedbackListIndividual">
+            <result name="success">/Ajax/feedBackEdit.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="saveQuestionRemark" class="com.crm.action.ProfileAction" method="saveQuestionRemark">
+            <result name="success">/Ajax/aditionalInformation.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="feedbackNewEdit" class="com.crm.action.ProfileAction" method="feedbackListIndividual">
+            <result name="success">/Ajax/feedback/feedbackEdit.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="feedbackNewHorizontal" class="com.crm.action.ProfileAction" method="feedbackListIndividual">
+            <result name="success">/Ajax/feedback/feedbackListHorizontal.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="saveFeedBack" class="com.crm.action.ProfileAction" method="saveFeedBack">
+            <result name="success">/Ajax/feedBack.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="saveFeedBackNew" class="com.crm.action.ProfileAction" method="saveFeedBackNew">
+            <result name="success">/Ajax/feedback/feedbackEdit.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="saveEditFeedBack" class="com.crm.action.ProfileAction" method="saveEditFeedBack">
+            <result name="success">/Ajax/feedBack.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="saveEditFeedBackNew" class="com.crm.action.ProfileAction" method="saveEditFeedBack">
+            <result name="success">/Ajax/feedback/feedbackEdit.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        
+        <action name="fetchAuthenticationData" class="com.crm.action.ProfileAction" method="fetchAuthenticationData">
+            <result name="success">/Ajax/authentication/authentication.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <!--New Action by vineet to fetch packagePrice on 02-12-2016-->
+        <action name="fetchPackagePrice" class="com.crm.action.ProfileAction" method="fetchPackagePrice">
+            <result name="success">/Ajax/authentication/packageprice.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="updateExpiry" class="com.crm.action.ProfileAction" method="updateExpiry">
+            <result name="success">/Profile/profileList.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="AddNewMember" class="com.crm.action.NewMember" method="addNewMember">
+            <result name="success" >/misc/addNewMember.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="createContact" class="com.crm.action.NewMember" method="createContact">
+            <result type="redirectAction" name="success">
+                <param name="actionName">profileList</param>
+                <param name="namespace">/Profile</param>
+            </result>           
+            <!--<result name="success" >/Profile/profileList.jsp</result>-->  
+            <result name="duplicate">/misc/addNewMember.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="getContactDetail" class="com.crm.action.ContactAction" method="getContactDetail">
+            <result name="success">/Registration/registration.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>       
+        </action>
+        <action name="chengeMovedStatus" class="com.crm.action.ContactAction" method="chengeMovedStatus">
+            <result name="success">/Registration/registration.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>       
+        </action>
+        <action name="saveRestrictedProfile" class="com.crm.action.ContactAction" method="saveRestrictedProfile">
+            <result name="success">/Registration/registration.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>       
+        </action>
+        <action name="saveFamilyDetails" class="com.crm.action.ContactAction" method="saveFamilyDetails">
+            <result name="success">/Registration/registration.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>       
+        </action>
+        <action name="enterFBAnswers" class="com.crm.action.ProfileAction" method="enterFBAnswers">
+            <result name="success">/Registration/registration.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>        
+        </action>
+        <action name="getCompany" class="com.crm.action.ProfileAction" method="getCompany">
+            <result name="success">/Registration/registration.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>        
+        </action>
+        <action name="fetchEmailList" class="com.crm.action.ProfileAction" method="fetchEmailList">
+            <result name="success">/Ajax/email/email.jsp</result>      
+            <result name="invalid" type="redirect">/index.jsp</result>   
+        </action>
+        <action name="saveEmail" class="com.crm.action.ProfileAction" method="saveEmail">
+            <result name="success">/Profile/profileList.jsp</result>   
+            <result name="invalid" type="redirect">/index.jsp</result>      
+        </action>
+        <action name="saveEmailStatus" class="com.crm.action.ProfileAction" method="saveEmailStatus">
+            <result name="success">/Status/statusmatchReport.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>        
+        </action>
+        <action name="fetchFollowupList" class="com.crm.action.ProfileAction" method="fetchFollowupList">
+            <result name="success">/Ajax/followup/followupStatusVertical.jsp</result>       
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="fetchFollowupListIndividual" class="com.crm.action.ProfileAction" method="fetchFollowupListIndividual">
+            <result name="success">/Ajax/followup/followupStatusVertical.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>     
+        </action>
+        <action name="fetchFollowupListStatusFinal" class="com.crm.action.ProfileAction" method="fetchFollowupListStatusFinal">
+            <result name="success">/Ajax/followup/followupStatusFinal.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>     
+        </action>
+        <action name="saveFollowup" class="com.crm.action.ProfileAction" method="saveFollowup">
+            <result name="success">/Ajax/followup/followup.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="saveFollowupStatusFinal" class="com.crm.action.ProfileAction" method="saveFollowupStatusFinal">
+            <result name="success">/Ajax/followup/followupStatusFinal.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>    
+        </action>
+        
+        <action name="saveFollowupIndividual" class="com.crm.action.ProfileAction" method="saveFollowupIndividual">
+            <result name="success">/Ajax/followup/followupStatus.jsp</result>   
+            <result name="invalid" type="redirect">/index.jsp</result>   
+        </action>
+        <action name="fetchRescheduleData" class="com.crm.action.ProfileAction" method="fetchRescheduleData">
+            <result name="success">/Ajax/followup/reschedule.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="fetchRescheduleDataIndividual" class="com.crm.action.ProfileAction" method="fetchRescheduleDataIndividual">
+            <result name="success">/Ajax/followup/rescheduleIndividual.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>  
+        <action name="fetchRescheduleDataStatusFinal" class="com.crm.action.ProfileAction" method="fetchRescheduleDataStatusFinal">
+            <result name="success">/Ajax/followup/rescheduleStatusFinal.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>    
+        </action>     
+        <action name="rescheduleFollowUp" class="com.crm.action.ProfileAction" method="rescheduleFollowUp">
+            <result name="success">/Ajax/followup/followup.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="rescheduleFollowUpIndividual" class="com.crm.action.ProfileAction" method="rescheduleFollowUpIndividual">
+            <result name="success">/Ajax/followup/followupStatus.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="rescheduleFollowUpStatusFinal" class="com.crm.action.ProfileAction" method="rescheduleFollowUpStatusFinal">
+            <result name="success">/Ajax/followup/followupStatusFinal.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>     
+        </action>
+        <action name="closeFollowUp" class="com.crm.action.ProfileAction" method="closeFollowUp">
+            <result name="success">/Ajax/followup/followup.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="closeFollowUpIndividual" class="com.crm.action.ProfileAction" method="closeFollowUpIndividual">
+            <result name="success">/Ajax/followup/followupStatus.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>     
+        </action>
+        <action name="closeFollowUpStatusFinal" class="com.crm.action.ProfileAction" method="closeFollowUpStatusFinal">
+            <result name="success">/Ajax/followup/followupStatusFinal.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>     
+        </action>
+        <action name="fetchTemplateData" class="com.crm.action.ProfileAction" method="fetchTemplateData">
+            <result name="success">/Ajax/shortList/template.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>     
+        </action>
+        <action name="sendPassword" class="com.crm.action.ProfileAction" method="sendPassword">
+            <result name="success">/Ajax/followup/followup.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="getShortSummary" class="com.crm.action.ProfileAction" method="getShortSummary">
+            <result name="success">/Ajax/shortList/shortList.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="updateAuthorization" class="com.crm.action.ProfileAction" method="updateAuthorization">
+            <result type="redirectAction" name="success">
+                <param name="actionName">profileList</param>
+                <param name="namespace">/Profile</param>
+            </result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="showCloseFollowup" class="com.crm.action.ProfileAction" method="showCloseFollowup">
+            <result name="success">/Ajax/followup/close.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="showCloseFollowupIndividual" class="com.crm.action.ProfileAction" method="showCloseFollowupIndividual">
+            <result name="success">/Ajax/followup/closeIndividual.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="showCloseFollowupStatusFinal" class="com.crm.action.ProfileAction" method="showCloseFollowupStatusFinal">
+            <result name="success">/Ajax/followup/closeStatusFinal.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="saveIntroductoryForm" class="com.crm.action.ContactAction" method="saveIntroductoryForm">
+            <result name="success">/Registration/registration.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        
+        <!--New Action added by vineet for divyang Flag-->
+        <action name="saveDivyangFlag" class="com.crm.action.ContactAction" method="saveDivyangFlag">
+            <result name="success">/Registration/registration.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <!--End here divyang Flag-->
+        <action name="saveOfficeUseDetail" class="com.crm.action.ContactAction" method="saveOfficeUseDetail">
+            <result name="success">/Registration/registration.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="savePaternalDetails" class="com.crm.action.ContactAction" method="savePaternalDetails">
+            <result name="success">/Registration/registration.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="saveMaternalDetails" class="com.crm.action.ContactAction" method="saveMaternalDetails">
+            <result name="success">/Registration/registration.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="saveDesiredPartnerDetails" class="com.crm.action.ContactAction" method="saveDesiredPartnerDetails">
+            <result name="success">/Registration/registration.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="saveMedicalHistory" class="com.crm.action.ContactAction" method="saveMedicalHistory">
+            <result name="success">/Registration/registration.jsp</result>   
+            <result name="invalid" type="redirect">/index.jsp</result>   
+        </action>
+        <action name="uploadImage" class="com.crm.action.ContactAction" method="uploadImage">
+            <result name="success">/Registration/registration.jsp</result> 
+            <result name="exceeds">/Registration/registration.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>     
+        </action>
+        <action name="deleteImage" class="com.crm.action.ContactAction" method="deleteImage">
+            <result name="success">/Registration/registration.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>    
+        </action>
+        <action name="saveEducation" class="com.crm.action.ContactAction" method="saveEducation">
+            <result name="success">/Registration/registration.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>    
+        </action>
+        <action name="saveChidren" class="com.crm.action.ContactAction" method="saveChidren">
+            <result name="success">/Registration/registration.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>     
+        </action>
+        <action name="saveDivyang" class="com.crm.action.ContactAction" method="saveDivyang">
+            <result name="success">/Registration/registration.jsp</result>   
+            <result name="invalid" type="redirect">/index.jsp</result>   
+        </action>
+        <action name="saveBusiness" class="com.crm.action.ContactAction" method="saveBusiness">
+            <result name="success">/Registration/registration.jsp</result>    
+        </action>
+        
+        <action name="saveFamilyBusiness" class="com.crm.action.ContactAction" method="saveFamilyBusiness">
+            <result name="success">/Registration/registration.jsp</result>    
+        </action>
+        
+        <action name="saveContactDetailsSL" class="com.crm.action.ContactAction" method="saveContactDetailsSL">
+            <result name="success">/Registration/registration.jsp</result>   
+            <result name="invalid" type="redirect">/index.jsp</result>   
+        </action>
+        <action name="getMatchListByName" class="com.crm.action.MatchAction" method="getMatchListByName">
+            <result name="success">/Status/statusmatchReport.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="fetchContactData" class="com.crm.action.MatchAction" method="fetchContactData">
+            <result name="success">/Ajax/statusreport/contactdetail.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>    
+        </action>
+        <action name="getStatusList" class="com.crm.action.MatchAction" method="getStatusList">
+            <result name="success">/Ajax/statusreport/statusReport.jsp</result>   
+            <result name="invalid" type="redirect">/index.jsp</result>   
+        </action>
+        <action name="updateStatus" class="com.crm.action.MatchAction" method="updateStatus">
+            <result name="success">/Ajax/statusreport/statusReport.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="createSchedule" class="com.crm.action.MatchAction" method="createSchedule">
+            <result name="success">/Ajax/statusreport/statusReport.jsp</result>    
+        </action>
+        <action name="createScheduleIndividual" class="com.crm.action.MatchAction" method="createScheduleIndividual">
+            <result name="success">/Ajax/statusreport/statusReportIndividual.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>    
+        </action>
+        <action name="createScheduleHorizontal" class="com.crm.action.MatchAction" method="createScheduleHorizontal">
+            <result name="success">/Ajax/statusreport/statusReportHorizontal.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="editMeeting" class="com.crm.action.MatchAction" method="editMeeting">
+            <result name="success">/Ajax/statusreport/editMeeting.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>    
+        </action>
+        <action name="editMeetingIndividual" class="com.crm.action.MatchAction" method="editMeetingIndividual">
+            <result name="success">/Ajax/statusreport/editMeetingIndividual.jsp</result>   
+            <result name="invalid" type="redirect">/index.jsp</result>   
+        </action>
+        <action name="editMeetingHorizontal" class="com.crm.action.MatchAction" method="editMeetingHorizontal">
+            <result name="success">/Ajax/statusreport/editMeetingHorizontal.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="updateMeeting" class="com.crm.action.MatchAction" method="updateMeeting">
+            <result name="success">/Ajax/statusreport/statusReport.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="updateMeetingIndividual" class="com.crm.action.MatchAction" method="updateMeetingIndividual">
+            <result name="success">/Ajax/statusreport/statusReportIndividual.jsp</result>   
+            <result name="invalid" type="redirect">/index.jsp</result>   
+        </action>
+        <action name="updateMeetingHorizontal" class="com.crm.action.MatchAction" method="updateMeetingHorizontal">
+            <result name="success">/Ajax/statusreport/statusReportHorizontal.jsp</result>   
+            <result name="invalid" type="redirect">/index.jsp</result>   
+        </action>
+        <action name="fetchStatusListVertical" class="com.crm.action.MatchAction" method="fetchStatusListVertical">
+            <result name="success">/Ajax/statusreport/statusReportVertical.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>    
+        </action>
+        
+        <action name="updateStatusIndividualForGridView" class="com.crm.action.MatchAction" method="updateStatusIndividualForGridView">
+            <result name="success">/Ajax/statusreport/statusReportVertical.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        
+        <action name="getStatusListHorizontal" class="com.crm.action.MatchAction" method="getStatusListHorizontal">
+            <result name="success">/Ajax/statusreport/statusReportHorizontal.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>    
+        </action>
+        
+        <action name="updateStatusIndividual" class="com.crm.action.MatchAction" method="updateStatusIndividual">
+            <result name="success">/Ajax/statusreport/statusReportIndividual.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="updateStatusHorizontal" class="com.crm.action.MatchAction" method="updateStatusHorizontal">
+            <result name="success">/Ajax/statusreport/statusReportHorizontal.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>     
+        </action>
+        <action name="fetchStatusListIndividual" class="com.crm.action.MatchAction" method="fetchStatusListIndividual">
+            <result name="success">/Ajax/statusreport/statusReportIndividual.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>     
+        </action>
+        <action name="fetchStatusListIndividualVertical" class="com.crm.action.MatchAction" method="fetchStatusListIndividualVertical">
+            <result name="success">/Ajax/statusreport/statusReportVertical.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>   
+        <action name="moveto" class="com.crm.action.MoveToOutBox" method="moveto">
+            <result name="success">/Ajax/outBox/moveToOutBox.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action> 
+        <action name="fetchOutBoxList" class="com.crm.action.MoveToOutBox" method="fetchOutBoxList">
+            <result name="success">/Ajax/outBox/outBoxList.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action> 
+        <action name="saveToShortlist" class="com.crm.action.MoveToOutBox" method="saveToShortlist">
+            <result name="success">/Ajax/outBox/outBoxList.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>   
+        <action name="emailBioData" class="com.crm.action.MoveToOutBox" method="emailBioData">
+            <result name="success">/Profile/profileList.jsp</result>   
+            <result name="success1">/Ajax/statusreport/result.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>  
+        <action name="deleteFromShortlisted" class="com.crm.action.MoveToOutBox" method="deleteFromShortlisted">
+            <result name="success">/Ajax/outBox/outbox.jsp</result>    
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action> 
+        <action name="deleteFromOutBox" class="com.crm.action.MoveToOutBox" method="deleteFromOutBox">
+            <result name="success">/Ajax/outBox/moveToOutBox.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>      
+        </action>  
+        <action name="updateLock" class="com.crm.action.ProfileAction" method="updateLock">
+            <result type="redirectAction" name="success">
+                <param name="actionName">profileList</param>
+                <param name="namespace">/Profile</param>
+            </result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <!--New action added by vineet for unlockProfile-->
+        <action name="unlockProfile" class="com.crm.action.ProfileAction" method="unlockProfile" >
+            <result type="redirectAction" name="success">
+                <param name="actionName">profileList</param>
+                <param name="namespace">/Profile</param>
+            </result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action> 
+        <!--Ended Here-->      
+                        
+        <action name="dashboard" class="com.crm.action.ProfileAction" method="dashboard">
+            <result name="success">/misc/dashboard.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>  
+        <action name="searchStatusReport" class="com.crm.action.MatchAction" method="searchStatusReport">
+            <result name="success">/Ajax/statusreport/statusReport.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>  
+        <action name="searchStatusReport1" class="com.crm.action.MatchAction" method="searchStatusReport1">
+            <result name="success">/Ajax/statusreport/statusReportIndividual.jsp</result>
+            <result name="success1">/Ajax/statusreport/statusReportVertical.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>  
+        <action name="getMatchListByNameAjax" class="com.crm.action.MatchAction" method="getMatchListByNameAjax">
+            <result name="success">/Ajax/statusreport/match.jsp</result>
+            <result name="success1">/Ajax/statusreport/matchReportIndividual.jsp</result>
+        </action> 
+        <action name="isBiodataSent" class="com.crm.action.MatchAction" method="isBiodataSent">
+            <result name="success">/Ajax/statusreport/sentBiodata.jsp</result>
+            <result name="successMatchReport">/Ajax/statusreport/matchReportSent.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>      
+        <action name="emailStatus" class="com.crm.action.MoveToOutBox" method="emailStatus">
+            <result name="success">/Ajax/outBox/outbox.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>  
+        <action name="createPdfPresentation" class="com.crm.action.ContactAction" method="createPdfPresentation">
+            <result name="success">/Ajax/pdfPresentation/pdf.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>   
+        
+        <!-- created by Pradeep [30-8-2018] for new format bio data-->
+        <action name="createPdfPresentationNewFormat" class="com.crm.action.ContactAction" method="createPdfPresentationNewFormat">
+            <result name="success">/Ajax/pdfPresentation/pdf.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        
+        <action name="fetchAuditTrailAll" class="com.crm.action.ContactAction" method="fetchAuditTrailAll">
+            <result name="success">/Ajax/profileActivity/all.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>   
+        <action name="uploadBioData" class="com.crm.action.ContactAction" method="uploadBioData">
+            <result name="success">/Registration/registration.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>    
+        <action name="sendRegistrationForm" class="com.crm.action.ProfileAction" method="sendRegistrationForm">
+            <result name="success">/Profile/profileList.jsp</result>
+        </action>
+        <action name="fetchGeneralContactDetail" class="com.crm.action.ProfileAction" method="fetchGeneralContactDetail">
+            <result name="success">/Ajax/email/generalDetailEmail.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="autocompleteAddUser" class="com.crm.action.ProfileAction" method="autocompleteAddUser">
+            <result name="success">/Ajax/autocomplete/autocomplete.jsp</result>     
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="updatePauseStatus" class="com.crm.action.ProfileAction" method="updatePauseStatus">     
+            <result type="redirectAction" name="success">
+                <param name="actionName">profileList</param>
+                <param name="namespace">/Profile</param>
+            </result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="forgotPassword" class="com.crm.action.Login" method="forgotPassword">     
+            <result name="success">/Ajax/forgotpassword/forgotpassword.jsp</result> 
+        </action>
+        <action name="paymentData" class="com.crm.action.PaymentAction" method="getPaymentDetails">     
+            <result name="success">/Ajax/payment/payment.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="editFeedBackNew" class="com.crm.action.ProfileAction" method="editFeedBackNew">     
+            <result name="success">/Ajax/feedback/editAdditionalInformation.jsp</result> 
+        </action>
+        <action name="transferdata" class="com.crm.action.ContactAction" method="transferdata">     
+            <result name="success">/misc/dashboard.jsp</result> 
+        </action>
+        <action name="savePayment" class="com.crm.action.PaymentAction" method="savePayment">     
+            <result name="success">/Ajax/payment/payment.jsp</result> 
+        </action>
+        <action name="changeUser" class="com.crm.action.ProfileAction" method="changeUser">     
+            <result name="success">/Ajax/user/userlist.jsp</result> 
+        </action>
+        <action name="getEmailStatus" class="com.crm.action.MatchAction" method="getEmailStatus">     
+            <result name="success">/Ajax/emailStatus/emailStatus.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="changeArm" class="com.crm.action.ProfileAction" method="changeArm">     
+            <result name="success">/Ajax/user/armList.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="fetchCityList" class="com.crm.action.MatchAction" method="fetchCityList">     
+            <result name="success">/Ajax/City/citylist.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="getHeading" class="com.crm.action.MatchAction" method="getHeading">     
+            <result name="success">/Ajax/heading/heading.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        
+        <action name="getHeadingForGridView" class="com.crm.action.MatchAction" method="getHeadingForGridView">     
+            <result name="success">/Ajax/heading/headingForGridView.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        
+        <action name="updatePriority" class="com.crm.action.MatchAction" method="updatePriority">     
+            <result name="success">/Ajax/statusreport/statusReportIndividual.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="contactExchange" class="com.crm.action.MatchAction" method="contactExchange">     
+            <result name="success">/Ajax/statusreport/statusReportIndividual.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="fetchActivityList" class="com.crm.action.MatchAction" method="fetchActivityList">     
+            <result name="success">/Ajax/profileActivity/auditTrailFiltered.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>          
+        <action name="fetchLockUnlockRemark" class="com.crm.action.ContactAction" method="fetchLockUnlockRemark">     
+            <result name="success">/Ajax/profileActivity/auditTrailFiltered.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        
+        <action name="fetchEducationListAuto" class="com.crm.action.MatchAction" method="fetchEducationListAuto">     
+            <result name="success">/Ajax/autocomplete/educationList.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="fetchCityListAuto" class="com.crm.action.MatchAction" method="fetchCityListAuto">     
+            <result name="success">/Ajax/autocomplete/citylist.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <!--Added By vineet For Hobbies List-->
+        <!--        <action name="fetchHobiesListAuto" class="com.crm.action.ContactAction" method="fetchHobiesListAuto">     
+            <result name="success">/Ajax/autocomplete/HobbiesList.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>-->
+        
+        
+        
+        <action name="fetchProfileFollowupData" class="com.crm.action.ProfileFollowupAction" method="fetchProfileFollowupData">     
+            <result name="success">/Ajax/profileFollowup/profileFollowup.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        
+        <!--Added by vineet for Moved on 6-12-2016-->
+        <action name="fetchProfileFollowupDataForMoved" class="com.crm.action.ProfileFollowupAction" method="fetchProfileFollowupDataForMoved">
+            <result name="success">/Ajax/profileFollowup/profileFollowupForMoved.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        
+        <action name="closeMeeting" class="com.crm.action.MatchAction" method="closeMeeting">     
+            <result name="success">/Ajax/emailStatus/emailStatus.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        <action name="fetchReasonList" class="com.crm.action.ProfileFollowupAction" method="fetchReasonList">     
+            <result name="success">/Ajax/profileFollowup/reasonList.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="fetchReasonList1" class="com.crm.action.ProfileFollowupAction" method="fetchReasonList">     
+            <result name="success">/Ajax/profileFollowup/editReasonList.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="saveProfileFollowup" class="com.crm.action.ProfileFollowupAction" method="saveProfileFollowup">     
+            <result name="success">/Ajax/profileFollowup/profileFollowup.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="editProfileFollowup" class="com.crm.action.ProfileFollowupAction" method="editProfileFollowup">     
+            <result name="success">/Ajax/profileFollowup/editProfileFollowup.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="updateProfileFollowup" class="com.crm.action.ProfileFollowupAction" method="updateProfileFollowup">     
+            <result name="success">/Ajax/profileFollowup/profileFollowup.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>
+        <action name="rmdashboard" class="com.crm.action.DashboardAction" method="fetchDashboardData">
+            <result name="success">/misc/rm-dashboard.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>  
+        <action name="armdashboard" class="com.crm.action.RmReportAction" method="generateReportArm">
+            <result name="success">/misc/arm-dashboard.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>  
+        <action name="generateReport" class="com.crm.action.RmReportAction" method="generateReport">
+            <result name="success">/RmReport/rmReport.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action> 
+        <action name="generateReportArm" class="com.crm.action.RmReportAction" method="generateReportArm">
+            <result name="success">/misc/arm-dashboard.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>  
+        </action>         
+        <!--Added By vineet on 14-06-2016 For User List-->
+        <action name="userList" class="com.crm.action.UserAction" method="userList">
+            <result name="success">/User/userList.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        <action name="addUser" class="com.crm.action.UserAction" method="addUser">
+            <result name="success">/User/addUser.jsp</result>
+        </action>
+        
+        <action name="editUserList" class="com.crm.action.UserAction" method="editUserList">
+            <result name="success">/User/editUser.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="updateUser" class="com.crm.action.UserAction" method="updateUser">
+            <result type="redirectAction" name="success">
+                <param name="actionName">userList</param>
+                <param name="namespace">/User</param>
+            </result>
+        </action>
+        
+        <action name="saveUser" class="com.crm.action.UserAction" method="saveUser">
+             <result type="redirectAction" name="success">
+                <param name="actionName">userList</param>
+                <param name="namespace">/User</param>
+            </result>
+        </action>
+        
+        <action name="deleteUserList" class="com.crm.action.UserAction" method="deleteUserList">
+            <result type="redirectAction" name="success">
+                <param name="actionName">userList</param>
+                <param name="namespace">/User</param>
+            </result>
+        </action>
+        <action name="getRMList" class="com.crm.action.UserAction" method="getRMList">
+            <result name="success">/User/RMAjax.jsp</result>
+        </action>
+        
+        <action name="resetPasswordForAllUser" class="com.crm.action.UserAction" method="resetPasswordForAllUser">
+            <result type="redirectAction" name="success">
+                <param name="actionName">userList</param>
+                <param name="namespace">/User</param>
+            </result>
+        </action>
+        <!--Added by vineet on 13=07-2016 For Email-->
+        
+        <action name="emailList" class="com.crm.action.EmailAction" method="emailList">
+            <result name="success">/Email/EmailList.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="deleteEmailList" class="com.crm.action.EmailAction" method="deleteEmailList">
+            <result name="success">/Email/EmailList.jsp                
+            </result>
+        </action>
+        
+        <action name="searchEmailList" class="com.crm.action.EmailAction" method="searchEmailList">
+            <result name="success">/Email/EmailList.jsp</result>
+            <result name="invalid">/index.jsp</result> 
+        </action>
+        
+        <action name="getEmailContent" class="com.crm.action.EmailAction" method="getEmailContent">
+            <result name="success">/Email/ContentAjax.jsp</result>
+        </action>
+        
+        
+        <!--Added by vineet on 17-11-2016 For Payment report-->
+        <action name="paymentReport" class="com.crm.action.ReportAction" method="paymentReport">
+            <result name="success">/Report/PaymentReport.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="getPaymentContent" class="com.crm.action.ReportAction" method="getPaymentContent">
+            <result name="success">/Report/GetPaymentAjax.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="contactExchangeReport" class="com.crm.action.ReportAction" method="contactExchangeReport">
+            <result name="success">/Report/ContactExchangeReport.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <!--Added by vineet on 22-11-2016 For acceptedThroughWeb report-->
+        <action name="acceptedThroughWeb" class="com.crm.action.ReportAction" method="acceptedThroughWeb">
+            <result name="success">/Report/AcceptedThroughWeb.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <!--Ended Vineet Work-->
+        
+        <action name="getContactInfoKundali" class="com.crm.action.KundaliAction" method="getContactInfoKundali">
+            <result name="success">/Ajax/kundali/kundali.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="calculateKundali" class="com.crm.action.KundaliAction" method="calculateKundali">
+            <result name="success">/Ajax/kundali/kundali.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="sentKundaliMail" class="com.crm.action.KundaliAction" method="sentKundaliMail">
+            <result name="success">/Ajax/kundali/kundaliresult.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="saveMaritalStatus" class="com.crm.action.ContactAction" method="saveMaritalStatus">
+            <result name="success">/Registration/registration.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="fetchRegistration" class="com.crm.action.ContactAction" method="fetchRegistration">
+            <result name="success">/Registration/registration.jsp</result>
+            <result name="invalid">/index.jsp</result>       
+        </action>
+        
+        <action name="savePdfDownloadActivity" class="com.crm.action.ContactAction" method="savePdfDownloadActivity">
+            <result name="success">/Registration/registration.jsp</result>
+            <result name="invalid">/index.jsp</result>       
+        </action>
+        
+        
+        <action name="fetchDataForContactExchange" class="com.crm.action.MatchAction" method="fetchDataForContactExchange">
+            <result name="success">/Ajax/contactexchange/contactexchange.jsp</result>
+            <result name="invalid">/index.jsp</result>       
+        </action>
+        <action name="getContactInfoKundaliVertical" class="com.crm.action.KundaliAction" method="getContactInfoKundaliVertical">
+            <result name="success">/Ajax/kundali/kundaliVertical.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="calculateKundaliVertical" class="com.crm.action.KundaliAction" method="calculateKundaliVertical">
+            <result name="success">/Ajax/kundali/kundaliVertical.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="saveAboutFamily" class="com.crm.action.ContactAction" method="saveAboutFamily">
+            <result name="success">/Registration/registration.jsp</result>
+            <result name="invalid">/index.jsp</result>       
+        </action>
+        
+        <!--New Action Added by vineet for checking duplicate User in ADD New Member-->
+        <action name="duplicateUser" class="com.crm.action.NewMember" method="duplicateUser">
+            <result name="success">/Ajax/addnewmember/AddNewMemberAjax.jsp</result>
+        </action>
+        
+        <!--New Action for Short List Report--> 
+        <action name="shortProfileList" class="com.crm.action.RmReportAction" method="shortProfileList">
+            <result name="success">/Report/ShortProfileList.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="deleteShortList" class="com.crm.action.ShortListAction" method="deleteShortList">
+            <result type="redirectAction" name="success">
+                <param name="actionName">shortProfileList</param>
+                <param name="namespace">/Report</param>
+            </result>
+        </action>
+        
+        <action name="searchShortList" class="com.crm.action.ShortListAction" method="searchShortList">
+            <result name="success">/Report/ShortProfileList.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <!--Ended HERE-->
+        
+        <!--Added By vineet on 25-07-2016 For Login Access-->
+        <action name="loginAccessReport" class="com.crm.action.LoginAction" method="loginAccessReport">
+            <result name="success">/Report/LoginAccess.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="deleteLoginAccess" class="com.crm.action.LoginAction" method="deleteLoginAccess">
+            <result type="redirectAction" name="success">
+                <param name="actionName">loginAccessReport</param>
+                <param name="namespace">/LoginAccess</param>
+            </result>
+        </action>
+        <action name="searchLoginAccess" class="com.crm.action.LoginAction" method="searchLoginAccess">
+            <result name="success">/Report/LoginAccess.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <!--Login Access Finished-->
+        
+        <!--Match Report Start Here ON 25-07-2016-->
+        <action name="matchReport" class="com.crm.action.MatchReportAction" method="matchReportList">
+            <result name="success">/Report/MatchReport.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="deleteMatchList" class="com.crm.action.MatchReportAction" method="deleteMatchList">
+            <result type="redirectAction" name="success">
+                <param name="actionName">matchReport</param>
+                <param name="namespace">/MatchReport</param>
+            </result>
+        </action>
+        
+        <action name="searchMatchList" class="com.crm.action.RmReportAction" method="searchMatchList">
+            <result name="success">/Report/MatchReport.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <!--Match Report Finished-->
+        
+        <!--Status Report Start Here on 26-07-2016-->
+        
+        <action name="statusReportList" class="com.crm.action.ReportAction" method="statusReportList">
+            <result name="success">/Report/StatusReport.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="searchStatusList" class="com.crm.action.ReportAction" method="searchStatusList">
+            <result name="success">/Report/StatusReport.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <!--Status Report Finished-->
+        
+        <!--Meeting Report Starts-->
+        
+        <action name="meetingReportList" class="com.crm.action.ReportAction" method="meetingReportList">
+            <result name="success">/Report/MeetingReport.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="searchMeetingList" class="com.crm.action.ReportAction" method="searchMeetingList">
+            <result name="success">/Report/MeetingReport.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="deleteMeetingList" class="com.crm.action.ReportAction" method="deleteMeetingList">
+            <result type="redirectAction" name="success">
+                <param name="actionName">meetingReportList</param>
+                <param name="namespace">/Meetingreport</param>
+            </result>
+        </action>
+        <!--Meeting Report Finished-->
+        <action name="fetchMatchListIndividual" class="com.crm.action.MatchAction" method="fetchMatchListIndividual">
+            <result name="success">/Ajax/statusreport/matchReportIndividual.jsp</result>  
+            <result name="invalid" type="redirect">/index.jsp</result>    
+        </action>
+        
+        <!--Moved BioData Start  Vineet-->
+        
+        <action name="movedBioDataList" class="com.crm.action.MasterAction" method="movedBioData">
+            <result name="success">/Master/movedBioData.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        <!--by vineet on 23-11-2016-->
+        <action name="fetchStatusListIndividualFromMovedMember" class="com.crm.action.MasterAction" method="fetchStatusListIndividualFromMovedMember">
+            <result name="success">/Master/MovedMemberStatusAjax.jsp</result> 
+            <result name="invalid" type="redirect">/index.jsp</result>     
+        </action>
+        
+        <!-- Moved Bio Data Finished -->
+        
+        
+        <!-- Astro city By Vineet -->
+        
+        <action name="astroCityList" class="com.crm.action.MasterAction" method="astroCityList">
+            <result name="success">/Master/astroCity.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="addAstroCity" class="com.crm.action.MasterAction" method="addAstroCity">
+            <result name="success">/Master/addAstroCity.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="saveAstroCity" class="com.crm.action.MasterAction" method="saveAstroCity">
+            <result type="redirectAction" name="success">
+                <param name="actionName">astroCityList</param>
+                <param name="namespace">/AstroCity</param>
+            </result>
+        </action>
+        
+        <action name="editAstroCity" class="com.crm.action.MasterAction" method="editAstroCity">
+            <result name="success">/Master/editAstroCity.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="deleteAstroCity" class="com.crm.action.MasterAction" method="deleteAstroCity">
+            <result type="redirectAction" name="success">
+                <param name="actionName">astroCityList</param>
+                <param name="namespace">/AstroCity</param> 
+            </result>
+        </action>
+        
+        <action name="updateAstroCity" class="com.crm.action.MasterAction" method="updateAstroCity">
+            <result type="redirectAction" name="success">
+                <param name="actionName">astroCityList</param>
+                <param name="namespace">/AstroCity</param>
+            </result>
+        </action>
+        
+        
+        <action name="fetchContactListMoved" class="com.crm.action.MasterAction" method="fetchContactListMoved">
+            <result name="success">/Ajax/autocomplete/contactListMoved.jsp</result>
+        </action>
+        <action name="getProfileListAutocomplete" class="com.crm.action.ProfileAction" method="getProfileListAutocomplete">
+            <result name="success">/Ajax/autocomplete/profilelistautocomplete.jsp</result>
+        </action>
+        
+        <!--Astro city Finished -->
+        <!--Added By Vineet For ChangeRequest-->
+        <action name="changeRequest" class="com.crm.action.ProfileAction" method="changeRequest">
+            <result name="success">/Master/ChangeRequestList.jsp</result>
+        </action>
+        
+        <!--Added by vineet For package on 01-12-2016-->
+       <action name="packageList" class="com.crm.action.MasterAction" method="packageList">
+           <result name="success">/Master/PackageList.jsp</result>
+           <result name="invalid">/index.jsp</result>
+       </action>
+       <action name="addPackage" class="com.crm.action.MasterAction" method="addPackage">
+           <result name="success">/Master/AddPackage.jsp</result>
+           <result name="invalid">/index.jsp</result>
+       </action>
+       <action name="savePackage" class="com.crm.action.MasterAction" method="savePackage">
+           <result name="success" type="redirectAction">
+               <param name="actionName">packageList</param>
+               <param name="namespace">/Master</param>
+           </result>
+       </action>
+       
+       
+        <action name="getContactDetailForChange" class="com.crm.action.ContactAction" method="getContactDetailForChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result> 
+        </action>
+        
+        <!--Change Request Update Methods-->
+        
+        
+        <action name="updateFamilyChange" class="com.crm.action.ContactAction" method="updateFamilyChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result> 
+        </action>
+        
+        <action name="updateIntroductoryChange" class="com.crm.action.ContactAction" method="updateIntroductoryChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateMedicalChange" class="com.crm.action.ContactAction" method="updateMedicalChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/indes.jsp</result>
+        </action>
+        
+        <action name="updatePreferencesChange" class="com.crm.action.ContactAction" method="updatePreferencesChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        <action name="updateContactDetailChange" class="com.crm.action.ContactAction" method="updateContactDetailChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateBusinessChange" class="com.crm.action.ContactAction" method="updateBusinessChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateFamilyBusinessChange" class="com.crm.action.ContactAction" method="updateFamilyBusinessChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateEducationChange" class="com.crm.action.ContactAction" method="updateEducationChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateSiblingChange" class="com.crm.action.ContactAction" method="updateSiblingChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updatePaternalChange" class="com.crm.action.ContactAction" method="updatePaternalChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateMaternalChange" class="com.crm.action.ContactAction" method="updateMaternalChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateUncleChange" class="com.crm.action.ContactAction" method="updateUncleChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateMamaChange" class="com.crm.action.ContactAction" method="updateMamaChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateAboutFamilyChange" class="com.crm.action.ContactAction" method="updateAboutFamilyChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateImage1Change" class="com.crm.action.ContactAction" method="updateImage1Change">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateImage2Change" class="com.crm.action.ContactAction" method="updateImage2Change">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateImage3Change" class="com.crm.action.ContactAction" method="updateImage3Change">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateImage4Change" class="com.crm.action.ContactAction" method="updateImage4Change">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        <action name="updateDivorceChange" class="com.crm.action.ContactAction" method="updateDivorceChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateDivyangChange" class="com.crm.action.ContactAction" method="updateDivyangChange">
+            <result name="success">/Registration/ChangeContact.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        
+        <!--ChangeRequest Finished--> 
+        
+        <action name="isAddressValid" class="com.crm.action.NewMember" method="isAddressValid">
+            <result name="success">/Ajax/autocomplete/profilelistautocomplete.jsp</result>
+        </action>
+        <action name="getDoBiodataOutBox" class="com.crm.action.MatchReportAction" method="getDoBiodataOutBox">
+            <result name="success">/Ajax/outBox/outBoxListMatchReport.jsp</result>
+        </action>
+        <action name="changeOutBoxCount" class="com.crm.action.MoveToOutBox" method="changeOutBoxCount">
+            <result name="success">/Ajax/outBox/outbox.jsp</result>
+        </action>
+        <action name="kundaliReport" class="com.crm.action.KundaliAction" method="getKundaliListByName" >
+            <result name="success">/Report/KundaliReport.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+       
+        
+        <action name="fetchBatchList" class="com.crm.action.ProfileFollowupAction" method="fetchBatchList">
+            <result name="success">/Ajax/profileFollowup/batchList.jsp</result>
+        </action>
+        <action name="fetchEmailSentList" class="com.crm.action.ProfileFollowupAction" method="fetchEmailSentList">
+            <result name="success">/Ajax/profileFollowup/emailSentList.jsp</result>
+        </action>
+        <action name="saveBatch" class="com.crm.action.ProfileFollowupAction" method="saveBatch">
+            <result name="success">/Ajax/profileFollowup/profileFollowup.jsp</result>
+        </action>
+        <action name="fetchCityListNew" class="com.crm.action.NewMember" method="cityList">
+            <result name="success">/Ajax/addnewmember/cityList.jsp</result>
+        </action>
+        <action name="community" class="com.crm.action.MasterAction" method="communityList">
+            <result name="success">/Master/community.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        <action name="saveOrUpdateCommunity" class="com.crm.action.MasterAction" method="saveOrUpdateCommunity">
+            <result name="invalid">/index.jsp</result>           
+            <result type="redirectAction" name="success">
+                <param name="actionName">community</param>
+                <param name="namespace">/Master</param>
+            </result>   
+        </action>
+        <action name="saveCommunity" class="com.crm.action.MasterAction" method="saveCommunity">
+            <result name="invalid">/index.jsp</result>           
+            <result type="redirectAction" name="success">
+                <param name="actionName">community</param>
+                <param name="namespace">/Master</param>
+            </result>   
+        </action>
+        <action name="massMail" class="com.crm.action.TemplateAction" method="massMail">
+            <result name="success">/Master/MassMail.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        <action name="getTemplateById" class="com.crm.action.TemplateAction" method="getTemplateById">
+            <result name="success">/Master/MassMail.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        <action name="saveTemplate" class="com.crm.action.TemplateAction" method="saveTemplateAndSendMail">
+            <result type="redirectAction" name="success">
+                <param name="actionName">fetchTemplateList</param>
+                <param name="namespace">/Master</param>
+            </result>   
+        </action>
+        <action name="fetchTemplateList" class="com.crm.action.TemplateAction" method="fetchTemplateList">
+            <result name="success">/Master/TemplateList.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        <action name="country" class="com.crm.action.MasterAction" method="countryList">
+            <result name="success">/Master/country.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="saveCountry" class="com.crm.action.MasterAction" method="saveCountry">
+            <result name="invalid">/index.jsp</result>           
+            <result type="redirectAction" name="success">
+                <param name="actionName">country</param>
+                <param name="namespace">/Master</param>
+            </result>   
+        </action>
+        
+        <action name="deleteCountry" class="com.crm.action.MasterAction" method="deleteCountry">
+            <result name="invalid">/index.jsp</result>           
+            <result type="redirectAction" name="success">
+                <param name="actionName">country</param>
+                <param name="namespace">/Master</param>
+            </result>   
+        </action>
+        
+        <action name="office" class="com.crm.action.MasterAction" method="officeList">
+            <result name="success">/Master/office.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="editOffice" class="com.crm.action.MasterAction" method="editOffice">
+            <result name="success">/Master/editoffice.jsp</result>
+            <result name="invalid" type="redirect">/index.jsp</result>
+        </action>
+        
+        <action name="updateOffice" class="com.crm.action.MasterAction" method="updateOffice">
+            <result name="invalid">/index.jsp</result>           
+            <result type="redirectAction" name="success">
+                <param name="actionName">office</param>
+                <param name="namespace">/Master</param>
+            </result> 
+        </action>
+        
+        <action name="addOffice" class="com.crm.action.MasterAction" method="addOffice">
+            <result name="success">/Master/addoffice.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="saveOffice" class="com.crm.action.MasterAction" method="saveOffice">
+            <result name="invalid">/index.jsp</result>
+            <result type="redirectAction" name="success">
+                <param name="actionName">office</param>
+                <param name="namespace">/Master</param>
+            </result>
+        </action>
+        
+        <action name="deleteOffice" class="com.crm.action.MasterAction" method="deleteOffice">
+            <result name="invalid">/index.jsp</result>
+            <result type="redirectAction" name="success">
+                <param name="actionName">office</param>
+                <param name="namespace">/Master</param>
+            </result>
+        </action>
+        
+        <action name="occupation" class="com.crm.action.MasterAction" method="occupationList">
+            <result name="invalid">/index.jsp</result>
+            <result name="success">/Master/occupation.jsp</result>
+        </action>
+        
+        <action name="saveOccupation" class="com.crm.action.MasterAction" method="saveOccupation">
+            <result name="invalid">/index.jsp</result>           
+            <result type="redirectAction" name="success">
+                <param name="actionName">occupation</param>
+                <param name="namespace">/Master</param>
+            </result> 
+        </action>
+        
+        <action name="deleteOccupation" class="com.crm.action.MasterAction" method="deleteOccupation">
+            <result name="invalid">/index.jsp</result>
+            <result type="redirectAction" name="success">
+                <param name="actionName">occupation</param>
+                <param name="namespace">/Master</param>
+            </result>
+        </action>
+        
+        <action name="category" class="com.crm.action.MasterAction" method="categoryList">
+            <result name="success">/Master/category.jsp</result> 
+            <result name="invalid">/index.jsp</result>
+        </action>      
+        <action name="saveCategory" class="com.crm.action.MasterAction" method="saveCategory">
+            <result name="invalid">/index.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">category</param>
+                <param name="namespace">/Master</param>
+            </result>
+        </action>
+       
+        <action name="deleteCategory" class="com.crm.action.MasterAction" method="deleteCategory">
+            <result name="invalid">/index.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">category</param>
+                <param name="namespace">/Master</param>
+            </result>  
+        </action>
+        
+        <action name="mainStatus" class="com.crm.action.MasterAction" method="mainStatus">
+            <result name="invalid">/index.jsp</result>
+            <result name="success">/Master/mainstatus.jsp</result>
+        </action>
+        <action name="saveMainStatus" class="com.crm.action.MasterAction" method="saveMainStatus">
+            <result name="invalid">/index.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">mainStatus</param>
+                <param name="namespace">/Master</param>
+            </result>
+        </action>
+        <action name="deleteMainStatus" class="com.crm.action.MasterAction" method="deleteMainStatus">
+            <result name="invalid">/index.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">mainStatus</param>
+                <param name="namespace">/Master</param>
+            </result>
+        </action>
+        
+        <action name="remark" class="com.crm.action.MasterAction" method="remark">
+            <result name="invalid">/index.jsp</result>
+            <result name="success">/Master/remark.jsp</result>
+        </action>
+        <action name="addRemark" class="com.crm.action.MasterAction" method="addRemark">
+            <result name="invalid">/index.jsp</result>
+            <result name="success">/Master/addremark.jsp</result>
+        </action>
+        
+        <action name="saveRemark" class="com.crm.action.MasterAction" method="saveRemark">
+            <result name="invalid">/index.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">remark</param>
+                <param name="namespace">/Master</param>
+            </result>
+        </action>
+        <action name="editRemark" class="com.crm.action.MasterAction" method="editRemark">
+            <result name="invalid">/index.jsp</result>
+            <result name="success">/Master/editremark.jsp</result>
+        </action>
+        <action name="updateRemark" class="com.crm.action.MasterAction" method="updateRemark">
+            <result name="invalid">/index.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">remark</param>
+                <param name="namespace">/Master</param>
+            </result>
+        </action>
+        <action name="deleteRemark" class="com.crm.action.MasterAction" method="deleteRemark">
+            <result name="invalid">/index.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">remark</param>
+                <param name="namespace">/Master</param>
+            </result>
+        </action>
+        <action name="fetchGeoData" class="com.crm.action.MasterAction" method="fetchGeoData">
+            <result name="invalid">/index.jsp</result>
+            <result name="success">/Ajax/masterCityData.jsp</result>
+        </action>
+        
+        <!--Added By vineet On 25-11-2016-->
+        <action name="transferProfile" class="com.crm.action.MasterAction" method="transferProfile">
+            <result name="success">/Master/TransferProfile.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="getProfileListForArm" class="com.crm.action.MasterAction" method="getProfileListForArm">
+            <result name="success">/Master/ProfileAjaxForArm.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="updateTransferProfile" class="com.crm.action.MasterAction" method="updateTransferProfile">
+            <!--           <result name="success" type="redirectAction">
+                <param name="actionName">transferProfile</param>
+                <param name="namespace">/Master</param>
+            </result>           -->
+            <result name="success">/Master/TransferProfile.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <!--Added by vineet on 09-06-2017-->
+        <!--For Gotra Master-->
+        <action name="fetchGotraList" class="com.crm.action.MasterAction" method="fetchGotraList">
+            <result name="success">/Master/gotraList.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="saveGotra" class="com.crm.action.MasterAction" method="saveGotra">
+            <result name="success">/Master/gotraList.jsp</result>
+            <result name="invalid">/index.jsp</result>        
+        </action>
+        <action name="addGotra" class="com.crm.action.MasterAction" method="addGotra">
+            <result name="success">/Master/addGotra.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="editGotra" class="com.crm.action.MasterAction" method="editGotra">
+            <result name="success">/Master/editGotra.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="updateGotra" class="com.crm.action.MasterAction" method="updateGotra">
+            <result name="success">/Master/gotraList.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="deleteGotra" class="com.crm.action.MasterAction" method="deleteGotra">
+              <result name="success">/Master/gotraList.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <!--For normalCityList-->
+        <action name="fetchCityList" class="com.crm.action.MasterAction" method="fetchCityList">
+            <result name="success">/Master/city.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="editCity" class="com.crm.action.MasterAction" method="editCity">
+            <result name="success">/Master/editcity.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="updateCity" class="com.crm.action.MasterAction" method="updateCity">
+            <result name="success">/Master/city.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="addCity" class="com.crm.action.MasterAction" method="addCity">
+            <result name="success">/Master/addcity.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <action name="saveCity" class="com.crm.action.MasterAction" method="saveCity">
+            <result name="success">/Master/city.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="deleteCity" class="com.crm.action.MasterAction" method="deleteCity">
+            <result name="success">/Master/city.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+        <!--For Hobbies-->
+        <action name="fetchHobbiesList" class="com.crm.action.MasterAction" method="fetchHobbiesList">
+            <result name="success">/Master/hobbiesList.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="saveHobby" class="com.crm.action.MasterAction" method="saveHobby">
+            <result name="success">/Master/hobbiesList.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        <action name="deleteHobby" class="com.crm.action.MasterAction" method="deleteHobby">
+             <result name="success">/Master/hobbiesList.jsp</result>
+            <result name="invalid">/index.jsp</result>
+        </action>
+        
+    </package>
+</struts>

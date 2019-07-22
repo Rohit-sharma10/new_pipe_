@@ -1,0 +1,1 @@
+${masterBean.latitudeString}___${masterBean.longitudeString}___${masterBean.latiDirection}___${masterBean.longiDirection}
